@@ -84,10 +84,10 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
   return (
     <div className="space-y-8 animate-fade-in">
       <div className="text-center space-y-4 mb-12">
-        <h1 className="font-garamond text-4xl font-bold text-foreground tracking-wide">
+        <h1 className="font-garamond text-4xl font-bold text-white tracking-wide drop-shadow-lg">
           {quizData.title}
         </h1>
-        <p className="font-sans text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+        <p className="font-sans text-lg text-gray-200 max-w-2xl mx-auto leading-relaxed drop-shadow">
           {quizData.subtitle}
         </p>
       </div>

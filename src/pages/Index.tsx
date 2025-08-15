@@ -40,10 +40,10 @@ const Index = () => {
           <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
             {/* Header */}
             <div className="text-center space-y-6 mb-16">
-              <h1 className="font-garamond text-6xl font-bold text-foreground tracking-wide animate-float">
+              <h1 className="font-garamond text-6xl font-bold text-white tracking-wide animate-float drop-shadow-lg">
                 Архив Тиары Афродиты
               </h1>
-              <p className="font-sans text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              <p className="font-sans text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed drop-shadow">
                 Добро пожаловать в таинственные архивы музея. Разгадайте загадку исчезновения бесценной тиары Афродиты,
                 изучив улики и ответив на вопросы следствия.
               </p>

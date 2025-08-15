@@ -18,13 +18,13 @@
     
     /* Semantic Design Tokens */
     --background: var(--museum-parchment);
-    --foreground: var(--museum-charcoal);
+    --foreground: var(--museum-deep-navy);
     
-    --card: var(--museum-glass);
+    --card: hsla(200, 15%, 95%, 0.9);
     --card-foreground: var(--museum-charcoal);
     
     --popover: var(--museum-aged-paper);
-    --popover-foreground: var(--museum-charcoal);
+    --popover-foreground: var(--museum-deep-navy);
     
     --primary: var(--museum-deep-navy);
     --primary-foreground: var(--museum-aged-paper);
@@ -33,7 +33,7 @@
     --secondary-foreground: var(--museum-parchment);
     
     --muted: var(--museum-aged-paper);
-    --muted-foreground: var(--museum-dusty-brown);
+    --muted-foreground: var(--museum-deep-navy);
     
     --accent: var(--museum-aged-gold);
     --accent-foreground: var(--museum-deep-navy);
