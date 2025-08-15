@@ -2,41 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Museum Archive Design System - Mysterious & Elegant */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
+    /* Museum Archive Color Palette - HSL */
+    --museum-parchment: 35 25% 92%;
+    --museum-aged-paper: 30 15% 88%;
+    --museum-dusty-brown: 25 20% 35%;
+    --museum-aged-gold: 45 65% 65%;
+    --museum-deep-navy: 220 30% 18%;
+    --museum-charcoal: 0 0% 25%;
+    --museum-glass: 200 15% 95%;
+    --museum-shadow: 220 20% 10%;
+    
+    /* Semantic Design Tokens */
+    --background: var(--museum-parchment);
+    --foreground: var(--museum-charcoal);
+    
+    --card: var(--museum-glass);
+    --card-foreground: var(--museum-charcoal);
+    
+    --popover: var(--museum-aged-paper);
+    --popover-foreground: var(--museum-charcoal);
+    
+    --primary: var(--museum-deep-navy);
+    --primary-foreground: var(--museum-aged-paper);
+    
+    --secondary: var(--museum-dusty-brown);
+    --secondary-foreground: var(--museum-parchment);
+    
+    --muted: var(--museum-aged-paper);
+    --muted-foreground: var(--museum-dusty-brown);
+    
+    --accent: var(--museum-aged-gold);
+    --accent-foreground: var(--museum-deep-navy);
+    
+    --destructive: 0 45% 50%;
+    --destructive-foreground: var(--museum-parchment);
+    
+    --border: 30 10% 80%;
+    --input: 30 5% 85%;
+    --ring: var(--museum-aged-gold);
+    
+    /* Museum Gradients */
+    --gradient-parchment: linear-gradient(135deg, hsl(var(--museum-parchment)), hsl(var(--museum-aged-paper)));
+    --gradient-glass: linear-gradient(145deg, hsla(var(--museum-glass), 0.8), hsla(var(--museum-glass), 0.3));
+    --gradient-golden: linear-gradient(120deg, hsl(var(--museum-aged-gold)), hsl(45 55% 55%));
+    --gradient-shadow: linear-gradient(180deg, hsla(var(--museum-shadow), 0.1), hsla(var(--museum-shadow), 0.05));
+    
+    /* Museum Shadows */
+    --shadow-exhibit: 0 8px 32px hsla(var(--museum-shadow), 0.15);
+    --shadow-glass: 0 4px 16px hsla(var(--museum-shadow), 0.08);
+    --shadow-hover: 0 12px 40px hsla(var(--museum-shadow), 0.2);
+    
+    /* Transitions */
+    --transition-museum: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    --transition-ink: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
