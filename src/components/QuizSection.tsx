@@ -41,14 +41,34 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
     newFeedback[questionIndex] = true;
     setShowFeedback(newFeedback);
 
-    // Auto-advance after showing feedback
-    setTimeout(() => {
-      if (questionIndex < quizData.questions.length - 1) {
-        setCurrentQuestion(questionIndex + 1);
-      } else {
-        setIsCompleted(true);
-      }
-    }, 1500);
+    // Check if answer is correct
+    const isCorrectAnswer = answerIndex === quizData.questions[questionIndex].correctAnswer;
+    
+    if (isCorrectAnswer) {
+      // Auto-advance to next question if correct
+      setTimeout(() => {
+        if (questionIndex < quizData.questions.length - 1) {
+          setCurrentQuestion(questionIndex + 1);
+          // Reset feedback for new question
+          const resetFeedback = [...showFeedback];
+          resetFeedback[questionIndex + 1] = false;
+          setShowFeedback(resetFeedback);
+        } else {
+          setIsCompleted(true);
+        }
+      }, 1500);
+    } else {
+      // Stay on same question if wrong, reset after showing feedback
+      setTimeout(() => {
+        const resetFeedback = [...showFeedback];
+        resetFeedback[questionIndex] = false;
+        setShowFeedback(resetFeedback);
+        
+        const resetAnswers = [...selectedAnswers];
+        resetAnswers[questionIndex] = undefined as any;
+        setSelectedAnswers(resetAnswers);
+      }, 2000);
+    }
   };
 
   const isCorrect = (questionIndex: number) => {
@@ -74,19 +94,19 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
 
       <MuseumCard className="max-w-4xl mx-auto p-8">
         <MuseumCardHeader>
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center space-x-4">
-              <div className="text-sm font-medium text-accent bg-accent/10 px-3 py-1 rounded-full">
-                {currentQuestion + 1} / {quizData.questions.length}
-              </div>
-              <div className="h-2 bg-muted/30 rounded-full w-48 overflow-hidden">
-                <div 
-                  className="h-full bg-gradient-golden transition-all duration-700 ease-out"
-                  style={{ width: `${((currentQuestion + 1) / quizData.questions.length) * 100}%` }}
-                />
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center space-x-4">
+                <div className="text-sm font-medium text-accent bg-accent/10 px-3 py-1 rounded-full">
+                  Вопрос {currentQuestion + 1}
+                </div>
+                <div className="h-2 bg-muted/30 rounded-full w-48 overflow-hidden">
+                  <div 
+                    className="h-full bg-gradient-golden transition-all duration-700 ease-out"
+                    style={{ width: `${((currentQuestion + 1) / quizData.questions.length) * 100}%` }}
+                  />
+                </div>
               </div>
             </div>
-          </div>
           
           <MuseumCardTitle className="text-2xl mb-8">
             {currentQ.text}
@@ -146,7 +166,7 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
                   <>
                     <XCircle className="w-6 h-6 text-red-500 flex-shrink-0" />
                     <p className="font-sans text-red-700 font-medium">
-                      Неверно. Правильный ответ: {currentQ.options[currentQ.correctAnswer]}
+                      Неверно. Попробуйте ещё раз!
                     </p>
                   </>
                 )}
