@@ -59,18 +59,18 @@ const Index = () => {
                   }`}
                   onClick={() => handleQuizStart(index)}
                 >
-                  <MuseumCardHeader className="bg-gradient-to-br from-slate-700/40 to-slate-800/40 backdrop-blur-sm rounded-lg border border-slate-600/30">
-                    <div className="text-center space-y-3">
-                      <MuseumCardTitle className="text-2xl text-center flex items-center justify-center gap-3">
+                  <MuseumCardHeader>
+                    <div className="flex items-center justify-between mb-4">
+                      <MuseumCardTitle className="text-xl">
                         {quiz.title}
-                        {completedQuizzes[index] && (
-                          <Trophy className="w-6 h-6 text-accent animate-bloom" />
-                        )}
                       </MuseumCardTitle>
-                      <p className="font-sans text-sm text-muted-foreground/80 leading-relaxed">
-                        {quiz.questions.length} вопрос{quiz.questions.length > 1 ? (quiz.questions.length > 4 ? 'ов' : 'а') : ''}
-                      </p>
+                      {completedQuizzes[index] && (
+                        <Trophy className="w-6 h-6 text-accent animate-bloom" />
+                      )}
                     </div>
+                    <p className="font-sans text-sm text-muted-foreground leading-relaxed">
+                      {quiz.questions.length} вопрос{quiz.questions.length > 1 ? (quiz.questions.length > 4 ? 'ов' : 'а') : ''}
+                    </p>
                   </MuseumCardHeader>
                   
                   <MuseumCardContent>
