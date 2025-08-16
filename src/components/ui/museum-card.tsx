@@ -8,9 +8,10 @@ const MuseumCard = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "group relative rounded-lg bg-gradient-to-br from-museum-charcoal to-museum-aged-gold/80",
-      "border border-museum-aged-gold/30 shadow-glass transition-all duration-500 hover:shadow-hover",
+      "group relative rounded-lg bg-museum-aged-paper/95 border border-museum-dusty-brown/20",
+      "shadow-glass transition-all duration-500 hover:shadow-hover",
       "hover:scale-[1.02]",
+      "backdrop-blur-sm",
       className
     )}
     {...props}
@@ -25,7 +26,7 @@ const MuseumCardHeader = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "flex flex-col space-y-1.5 p-8 relative z-10 text-center",
+      "flex flex-col space-y-1.5 p-6 relative z-10",
       className
     )}
     {...props}
@@ -40,8 +41,8 @@ const MuseumCardTitle = React.forwardRef<
   <h3
     ref={ref}
     className={cn(
-      "font-garamond text-3xl font-bold leading-tight tracking-wide text-center",
-      "text-museum-parchment mb-4 drop-shadow-lg",
+      "font-garamond text-2xl font-semibold leading-none tracking-wide",
+      "text-foreground mb-2 letter-spacing-[0.02em]",
       className
     )}
     {...props}
@@ -56,7 +57,7 @@ const MuseumCardDescription = React.forwardRef<
   <p
     ref={ref}
     className={cn(
-      "text-base text-museum-aged-paper leading-relaxed font-sans text-center drop-shadow",
+      "text-sm text-muted-foreground leading-relaxed font-sans",
       className
     )}
     {...props}
@@ -70,7 +71,7 @@ const MuseumCardContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("p-8 pt-0 relative z-10 text-center", className)}
+    className={cn("p-6 pt-0 relative z-10", className)}
     {...props}
   />
 ));

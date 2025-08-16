@@ -50,7 +50,6 @@
     --gradient-glass: linear-gradient(145deg, hsla(var(--museum-glass), 0.8), hsla(var(--museum-glass), 0.3));
     --gradient-golden: linear-gradient(120deg, hsl(var(--museum-aged-gold)), hsl(45 55% 55%));
     --gradient-shadow: linear-gradient(180deg, hsla(var(--museum-shadow), 0.1), hsla(var(--museum-shadow), 0.05));
-    --gradient-dark-gold: linear-gradient(135deg, hsl(var(--museum-charcoal)), hsl(var(--museum-aged-gold)));
     
     /* Museum Shadows */
     --shadow-exhibit: 0 8px 32px hsla(var(--museum-shadow), 0.15);
