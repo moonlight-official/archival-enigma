@@ -8,12 +8,11 @@ const MuseumCard = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "group relative rounded-lg bg-gradient-glass backdrop-blur-md border border-border/20",
+      "group relative rounded-lg bg-card/90 border border-border/30",
       "shadow-glass transition-all duration-500 hover:shadow-hover",
-      "hover:scale-[1.02] hover:backdrop-blur-lg",
+      "hover:scale-[1.02]",
       "before:absolute before:inset-0 before:rounded-lg before:bg-gradient-shadow before:opacity-0",
       "before:transition-opacity before:duration-300 hover:before:opacity-100",
-      "animate-glass-shimmer",
       className
     )}
     {...props}
