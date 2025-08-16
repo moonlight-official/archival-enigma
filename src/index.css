@@ -20,8 +20,8 @@
     --background: var(--museum-parchment);
     --foreground: var(--museum-deep-navy);
     
-    --card: hsla(200, 15%, 95%, 0.9);
-    --card-foreground: var(--museum-charcoal);
+    --card: var(--museum-aged-paper);
+    --card-foreground: var(--museum-deep-navy);
     
     --popover: var(--museum-aged-paper);
     --popover-foreground: var(--museum-deep-navy);
