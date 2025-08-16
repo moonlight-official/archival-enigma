@@ -94,21 +94,7 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
 
       <MuseumCard className="max-w-4xl mx-auto p-8">
         <MuseumCardHeader>
-            <div className="flex items-center justify-between mb-6">
-              <div className="flex items-center space-x-4">
-                <div className="text-sm font-medium text-accent bg-accent/10 px-3 py-1 rounded-full">
-                  Вопрос {currentQuestion + 1}
-                </div>
-                <div className="h-2 bg-muted/30 rounded-full w-48 overflow-hidden">
-                  <div 
-                    className="h-full bg-gradient-golden transition-all duration-700 ease-out"
-                    style={{ width: `${((currentQuestion + 1) / quizData.questions.length) * 100}%` }}
-                  />
-                </div>
-              </div>
-            </div>
-          
-          <MuseumCardTitle className="text-2xl mb-8">
+          <MuseumCardTitle className="text-3xl mb-8 text-center">
             {currentQ.text}
           </MuseumCardTitle>
         </MuseumCardHeader>
@@ -121,25 +107,23 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
                 onClick={() => !hasAnswered && handleAnswerSelect(currentQuestion, index)}
                 disabled={hasAnswered}
                 className={cn(
-                  "group relative p-6 text-left rounded-lg border-2 transition-all duration-300",
-                  "hover:scale-[1.01] hover:shadow-glass focus:outline-none",
-                  !hasAnswered && "hover:border-accent/50 hover:bg-accent/5 cursor-pointer",
-                  hasAnswered && index === currentQ.correctAnswer && "border-green-400/60 bg-green-50/50",
-                  hasAnswered && index === selectedAnswers[currentQuestion] && index !== currentQ.correctAnswer && "border-red-400/60 bg-red-50/50",
-                  !hasAnswered && "border-border/30 bg-muted/20",
+                  "group relative p-8 text-center rounded-lg border-2 transition-all duration-300",
+                  "bg-gradient-to-br from-museum-charcoal to-museum-dusty-brown",
+                  "border-museum-aged-gold/30 text-museum-aged-gold",
+                  "hover:scale-[1.02] hover:shadow-glass focus:outline-none",
+                  !hasAnswered && "hover:border-museum-aged-gold/60 hover:bg-gradient-to-br hover:from-museum-dusty-brown hover:to-museum-charcoal cursor-pointer",
+                  hasAnswered && index === selectedAnswers[currentQuestion] && index !== currentQ.correctAnswer && "border-red-400/60 bg-red-900/30",
                   hasAnswered && "cursor-default"
                 )}
               >
-                <div className="flex items-center justify-between">
-                  <span className="font-sans text-base leading-relaxed text-foreground">
+                <div className="flex items-center justify-center">
+                  <span className="font-garamond text-xl leading-relaxed text-museum-aged-gold font-semibold">
                     {option}
                   </span>
                   
-                  {showCurrentFeedback && (
+                  {showCurrentFeedback && index === selectedAnswers[currentQuestion] && (
                     <div className="ml-4 flex-shrink-0">
-                      {index === currentQ.correctAnswer ? (
-                        <CheckCircle className="w-6 h-6 text-green-500 animate-bloom" />
-                      ) : index === selectedAnswers[currentQuestion] && (
+                      {index !== currentQ.correctAnswer && (
                         <XCircle className="w-6 h-6 text-red-500 animate-ripple" />
                       )}
                     </div>
@@ -147,7 +131,7 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
                 </div>
 
                 {/* Hover effect overlay */}
-                <div className="absolute inset-0 rounded-lg bg-gradient-golden opacity-0 group-hover:opacity-5 transition-opacity duration-300" />
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-museum-aged-gold/10 to-museum-aged-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </button>
             ))}
           </div>
