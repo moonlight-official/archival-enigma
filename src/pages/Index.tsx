@@ -41,10 +41,10 @@ const Index = () => {
             {/* Header */}
             <div className="text-center space-y-6 mb-16">
               <h1 className="font-garamond text-6xl font-bold text-white tracking-wide animate-float drop-shadow-lg">
-                Архив Тиары Афродиты
+                Тайны тиары Афродиты
               </h1>
               <p className="font-sans text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed drop-shadow">
-                Добро пожаловать в таинственные архивы музея. Разгадайте загадку исчезновения бесценной тиары Афродиты,
+                Добро пожаловать в таинственные архивы музея. Разгадайте загадку исчезновения бесценной тиары,
                 изучив улики и ответив на вопросы следствия.
               </p>
             </div>
