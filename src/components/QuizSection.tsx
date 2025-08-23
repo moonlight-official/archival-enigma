@@ -8,6 +8,7 @@ interface Question {
   text: string;
   options: string[];
   correctAnswer: number;
+  clues: string[];
 }
 
 interface QuizData {
@@ -149,9 +150,16 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
                 ) : (
                   <>
                     <XCircle className="w-6 h-6 text-red-500 flex-shrink-0" />
-                    <p className="font-sans text-red-700 font-medium">
-                      Неверно. Попробуйте ещё раз!
-                    </p>
+                    <div className="space-y-2">
+                      <p className="font-sans text-red-700 font-medium">
+                        Неверно. Попробуйте ещё раз!
+                      </p>
+                      {currentQ.clues[selectedAnswers[currentQuestion]] && (
+                        <p className="font-sans text-sm text-amber-700 bg-amber-50 p-3 rounded-md border-l-4 border-amber-400">
+                          💡 Подсказка: {currentQ.clues[selectedAnswers[currentQuestion]]}
+                        </p>
+                      )}
+                    </div>
                   </>
                 )}
               </div>

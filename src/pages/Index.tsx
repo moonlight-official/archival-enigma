@@ -55,7 +55,7 @@ const Index = () => {
                 <MuseumCard 
                   key={index}
                   className={`cursor-pointer transition-all duration-500 hover:scale-105 ${
-                    completedQuizzes[index] ? 'bg-gradient-golden/10' : ''
+                    completedQuizzes[index] ? 'opacity-75 bg-gradient-to-br from-gray-500/20 to-gray-600/20' : ''
                   }`}
                   onClick={() => handleQuizStart(index)}
                 >
@@ -65,7 +65,7 @@ const Index = () => {
                         {quiz.title}
                       </MuseumCardTitle>
                       {completedQuizzes[index] && (
-                        <Trophy className="w-6 h-6 text-accent animate-bloom" />
+                        <Trophy className="w-6 h-6 text-gray-500" />
                       )}
                     </div>
                     <p className="font-sans text-sm text-muted-foreground leading-relaxed">
