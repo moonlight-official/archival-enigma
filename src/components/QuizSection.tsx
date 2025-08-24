@@ -9,12 +9,14 @@ interface Question {
   options: string[];
   correctAnswer: number;
   clues: string[];
+  completionText?: string;
 }
 
 interface QuizData {
   title: string;
   subtitle: string;
   questions: Question[];
+  completionText?: string;
 }
 
 interface QuizSectionProps {
@@ -32,6 +34,7 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
   const [selectedAnswers, setSelectedAnswers] = useState<number[]>([]);
   const [showFeedback, setShowFeedback] = useState<boolean[]>([]);
   const [isCompleted, setIsCompleted] = useState(false);
+  const [completedQuestions, setCompletedQuestions] = useState<boolean[]>([]);
 
   const handleAnswerSelect = (questionIndex: number, answerIndex: number) => {
     const newAnswers = [...selectedAnswers];
@@ -146,14 +149,17 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
               <div className="flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-3">
                 <CheckCircle className="w-5 h-5 md:w-6 md:h-6 text-green-500 flex-shrink-0" />
                 <p className="font-sans text-green-700 font-medium text-sm md:text-base">
-                  Правильно! {currentQuestion < quizData.questions.length - 1 ? 'Переходите к следующему вопросу' : 'Завершить этап'}
+                  Правильно! {currentQ.completionText || (currentQuestion < quizData.questions.length - 1 ? 'Переходите к следующему вопросу' : 'Завершить этап')}
                 </p>
               </div>
             </div>
           )}
 
           {isCompleted && (
-            <div className="mt-8 text-center">
+            <div className="mt-8 text-center space-y-4">
+              <p className="font-garamond text-xl text-center text-museum-aged-gold font-semibold">
+                {quizData.completionText || "Задание завершено!"}
+              </p>
               <MuseumButton 
                 variant="liquid" 
                 size="lg"

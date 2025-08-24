@@ -2,6 +2,7 @@ export const quizData = [
   {
     title: "Задание 1",
     subtitle: "Готовы ответить на вопросы?",
+    completionText: "Откройте конверт с заданием 2",
     questions: [
       {
         id: 1,
@@ -59,6 +60,7 @@ export const quizData = [
   {
     title: "Задание 2",
     subtitle: "Готовы ответить на вопросы?",
+    completionText: "Откройте конверт с заданием 3",
     questions: [
       {
         id: 1,
@@ -129,6 +131,7 @@ export const quizData = [
           "Подделала документы"
         ],
         correctAnswer: 0,
+        completionText: "Откройте конверт с заданием 4",
         clues: [
           "",
           "Замки были целыми после инцидента",
@@ -146,6 +149,7 @@ export const quizData = [
           "В банковской ячейке"
         ],
         correctAnswer: 1,
+        completionText: "Откройте конверт с заданием 5",
         clues: [
           "Кладовку обыскивали в первую очередь",
           "",
@@ -157,7 +161,8 @@ export const quizData = [
   },
   {
     title: "Задание 4",
-    subtitle: "Готовы ответить на вопросы?", 
+    subtitle: "Готовы ответить на вопросы?",
+    completionText: "Откройте конверт с заданием 5",
     questions: [
       {
         id: 1,
@@ -198,6 +203,7 @@ export const quizData = [
   {
     title: "Задание 5",
     subtitle: "Финальные вопросы расследования",
+    completionText: "Поздравляем! Расследование завершено",
     questions: [
       {
         id: 1,
