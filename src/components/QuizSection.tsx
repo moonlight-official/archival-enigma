@@ -93,22 +93,22 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
         </p>
       </div>
 
-      <MuseumCard className="max-w-4xl mx-auto p-4 md:p-8">
+      <MuseumCard className="max-w-4xl mx-auto p-2 md:p-8">
         <MuseumCardHeader>
-          <MuseumCardTitle className="text-2xl md:text-3xl mb-6 md:mb-8 text-center">
+          <MuseumCardTitle className="text-lg md:text-3xl mb-3 md:mb-8 text-center">
             {currentQ.text}
           </MuseumCardTitle>
         </MuseumCardHeader>
 
         <MuseumCardContent>
-          <div className="grid gap-3 md:gap-4">
+          <div className="grid gap-2 md:gap-4">
             {currentQ.options.map((option, index) => (
               <button
                 key={index}
                 onClick={() => !hasAnswered && handleAnswerSelect(currentQuestion, index)}
                 disabled={hasAnswered}
                 className={cn(
-                  "group relative p-4 md:p-6 text-center rounded-lg border-2 transition-all duration-300",
+                  "group relative p-3 md:p-6 text-left rounded-lg border-2 transition-all duration-300",
                   "bg-gradient-to-br from-museum-charcoal to-museum-dusty-brown",
                   "border-museum-aged-gold/30 text-museum-aged-gold",
                   "hover:scale-[1.02] hover:shadow-glass focus:outline-none",
@@ -117,17 +117,21 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
                   hasAnswered && "cursor-default"
                 )}
               >
-                <div className="flex items-center justify-center">
-                  <span className="font-garamond text-lg md:text-xl leading-relaxed text-museum-aged-gold font-semibold">
-                    {option}
-                  </span>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="font-garamond text-base md:text-xl leading-relaxed text-museum-aged-gold font-semibold">
+                      {option}
+                    </span>
+                    
+                    {showCurrentFeedback && index === selectedAnswers[currentQuestion] && index === currentQ.correctAnswer && (
+                      <CheckCircle className="w-5 h-5 md:w-6 md:h-6 text-green-500 animate-ripple flex-shrink-0" />
+                    )}
+                  </div>
                   
-                  {showCurrentFeedback && index === selectedAnswers[currentQuestion] && (
-                    <div className="ml-4 flex-shrink-0">
-                      {index !== currentQ.correctAnswer && (
-                        <XCircle className="w-5 h-5 md:w-6 md:h-6 text-red-500 animate-ripple" />
-                      )}
-                    </div>
+                  {showCurrentFeedback && index === selectedAnswers[currentQuestion] && index !== currentQ.correctAnswer && currentQ.clues[index] && (
+                    <p className="font-sans text-xs md:text-sm text-red-400 leading-relaxed">
+                      💡 {currentQ.clues[index]}
+                    </p>
                   )}
                 </div>
 
@@ -137,31 +141,13 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
             ))}
           </div>
 
-          {showCurrentFeedback && (
-            <div className="mt-4 md:mt-6 p-4 md:p-6 rounded-lg bg-gradient-shadow border border-border/20 animate-fade-in">
+          {showCurrentFeedback && isCorrect(currentQuestion) && (
+            <div className="mt-3 md:mt-6 p-3 md:p-6 rounded-lg bg-gradient-shadow border border-border/20 animate-fade-in">
               <div className="flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-3">
-                {isCorrect(currentQuestion) ? (
-                  <>
-                    <CheckCircle className="w-5 h-5 md:w-6 md:h-6 text-green-500 flex-shrink-0" />
-                    <p className="font-sans text-green-700 font-medium text-sm md:text-base">
-                      Правильно! {currentQuestion < quizData.questions.length - 1 ? 'Переходите к следующему вопросу' : 'Завершить этап'}
-                    </p>
-                  </>
-                ) : (
-                  <>
-                    <XCircle className="w-5 h-5 md:w-6 md:h-6 text-red-500 flex-shrink-0" />
-                    <div className="space-y-2">
-                      <p className="font-sans text-red-700 font-medium text-sm md:text-base">
-                        Неверно. Попробуйте ещё раз!
-                      </p>
-                      {currentQ.clues[selectedAnswers[currentQuestion]] && (
-                        <p className="font-sans text-xs md:text-sm text-amber-700 bg-amber-50 p-2 md:p-3 rounded-md border-l-4 border-amber-400">
-                          💡 Подсказка: {currentQ.clues[selectedAnswers[currentQuestion]]}
-                        </p>
-                      )}
-                    </div>
-                  </>
-                )}
+                <CheckCircle className="w-5 h-5 md:w-6 md:h-6 text-green-500 flex-shrink-0" />
+                <p className="font-sans text-green-700 font-medium text-sm md:text-base">
+                  Правильно! {currentQuestion < quizData.questions.length - 1 ? 'Переходите к следующему вопросу' : 'Завершить этап'}
+                </p>
               </div>
             </div>
           )}
