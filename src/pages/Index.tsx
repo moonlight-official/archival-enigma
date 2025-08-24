@@ -115,21 +115,25 @@ const Index = () => {
           </div>
         ) : (
           <div className="max-w-6xl mx-auto">
-            <div className="mb-8">
+            {/* Fixed back button */}
+            <div className="fixed top-4 left-4 z-20">
               <MuseumButton 
                 variant="archive" 
                 onClick={() => setShowMenu(true)}
-                className="mb-4"
+                className="shadow-lg"
               >
-                ← Вернуться к заданиям
+                ← Назад
               </MuseumButton>
             </div>
             
-            <QuizSection
-              quizData={quizData[currentQuiz]}
-              onComplete={handleQuizComplete}
-              isActive={!showMenu}
-            />
+            {/* Quiz positioned higher */}
+            <div className="pt-4">
+              <QuizSection
+                quizData={quizData[currentQuiz]}
+                onComplete={handleQuizComplete}
+                isActive={!showMenu}
+              />
+            </div>
           </div>
         )}
       </div>
