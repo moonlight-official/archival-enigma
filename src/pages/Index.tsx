@@ -55,22 +55,19 @@ const Index = () => {
                 <MuseumCard 
                   key={index}
                   className={`cursor-pointer transition-all duration-500 hover:scale-105 ${
-                    completedQuizzes[index] ? 'bg-gradient-golden/10' : ''
+                    completedQuizzes[index] ? 'opacity-75 bg-gradient-to-br from-gray-500/20 to-gray-600/20' : ''
                   }`}
                   onClick={() => handleQuizStart(index)}
                 >
                   <MuseumCardHeader>
-                    <div className="flex items-center justify-between mb-4">
-                      <MuseumCardTitle className="text-xl">
+                    <div className="flex items-center justify-center mb-4 relative">
+                      <MuseumCardTitle className="text-xl text-center">
                         {quiz.title}
                       </MuseumCardTitle>
                       {completedQuizzes[index] && (
-                        <Trophy className="w-6 h-6 text-accent animate-bloom" />
+                        <Trophy className="w-6 h-6 text-gray-500 absolute right-0" />
                       )}
                     </div>
-                    <p className="font-sans text-sm text-muted-foreground leading-relaxed">
-                      {quiz.questions.length} вопрос{quiz.questions.length > 1 ? (quiz.questions.length > 4 ? 'ов' : 'а') : ''}
-                    </p>
                   </MuseumCardHeader>
                   
                   <MuseumCardContent>
@@ -115,21 +112,25 @@ const Index = () => {
           </div>
         ) : (
           <div className="max-w-6xl mx-auto">
-            <div className="mb-8">
+            {/* Fixed back button */}
+            <div className="fixed top-4 left-4 z-20">
               <MuseumButton 
                 variant="archive" 
                 onClick={() => setShowMenu(true)}
-                className="mb-4"
+                className="shadow-lg"
               >
-                ← Вернуться к заданиям
+                ← Назад
               </MuseumButton>
             </div>
             
-            <QuizSection
-              quizData={quizData[currentQuiz]}
-              onComplete={handleQuizComplete}
-              isActive={!showMenu}
-            />
+            {/* Quiz positioned higher */}
+            <div className="pt-4">
+              <QuizSection
+                quizData={quizData[currentQuiz]}
+                onComplete={handleQuizComplete}
+                isActive={!showMenu}
+              />
+            </div>
           </div>
         )}
       </div>
