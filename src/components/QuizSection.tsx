@@ -7,7 +7,8 @@ interface Question {
   id: number;
   text: string;
   options: string[];
-  correctAnswer: number;
+  correctAnswer?: number;
+  correctAnswers?: Array<{answerIndex: number, completionText: string}>;
   clues: string[];
   completionText?: string;
 }
@@ -45,8 +46,17 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
     newFeedback[questionIndex] = true;
     setShowFeedback(newFeedback);
 
-    // Check if answer is correct
-    const isCorrectAnswer = answerIndex === quizData.questions[questionIndex].correctAnswer;
+    const question = quizData.questions[questionIndex];
+    
+    // Check if answer is correct (handle both single and branching answers)
+    let isCorrectAnswer = false;
+    if (question.correctAnswers) {
+      // Branching question - check if answer is in the correct answers array
+      isCorrectAnswer = question.correctAnswers.some(ca => ca.answerIndex === answerIndex);
+    } else if (question.correctAnswer !== undefined) {
+      // Single correct answer question
+      isCorrectAnswer = answerIndex === question.correctAnswer;
+    }
     
     if (isCorrectAnswer) {
       // Auto-advance to next question if correct
@@ -76,7 +86,31 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
   };
 
   const isCorrect = (questionIndex: number) => {
-    return selectedAnswers[questionIndex] === quizData.questions[questionIndex].correctAnswer;
+    const question = quizData.questions[questionIndex];
+    const selectedAnswer = selectedAnswers[questionIndex];
+    
+    if (question.correctAnswers) {
+      // Branching question
+      return question.correctAnswers.some(ca => ca.answerIndex === selectedAnswer);
+    } else if (question.correctAnswer !== undefined) {
+      // Single correct answer question
+      return selectedAnswer === question.correctAnswer;
+    }
+    return false;
+  };
+
+  const getCompletionText = (questionIndex: number) => {
+    const question = quizData.questions[questionIndex];
+    const selectedAnswer = selectedAnswers[questionIndex];
+    
+    if (question.correctAnswers) {
+      // Branching question - find the specific completion text for the selected answer
+      const correctAnswer = question.correctAnswers.find(ca => ca.answerIndex === selectedAnswer);
+      return correctAnswer?.completionText || 'Переходите к следующему вопросу';
+    } else {
+      // Single answer question
+      return question.completionText || (questionIndex < quizData.questions.length - 1 ? 'Переходите к следующему вопросу' : 'Завершить этап');
+    }
   };
 
   const currentQ = quizData.questions[currentQuestion];
@@ -126,12 +160,12 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
                       {option}
                     </span>
                     
-                    {showCurrentFeedback && index === selectedAnswers[currentQuestion] && index === currentQ.correctAnswer && (
+                    {showCurrentFeedback && index === selectedAnswers[currentQuestion] && isCorrect(currentQuestion) && (
                       <CheckCircle className="w-5 h-5 md:w-6 md:h-6 text-green-500 animate-ripple flex-shrink-0" />
                     )}
                   </div>
                   
-                  {showCurrentFeedback && index === selectedAnswers[currentQuestion] && index !== currentQ.correctAnswer && currentQ.clues[index] && (
+                  {showCurrentFeedback && index === selectedAnswers[currentQuestion] && !isCorrect(currentQuestion) && currentQ.clues[index] && (
                     <p className="font-sans text-xs md:text-sm text-red-400 leading-relaxed">
                       💡 {currentQ.clues[index]}
                     </p>
@@ -149,7 +183,7 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
               <div className="flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-3">
                 <CheckCircle className="w-5 h-5 md:w-6 md:h-6 text-green-500 flex-shrink-0" />
                 <p className="font-sans text-green-700 font-medium text-sm md:text-base">
-                  Правильно! {currentQ.completionText || (currentQuestion < quizData.questions.length - 1 ? 'Переходите к следующему вопросу' : 'Завершить этап')}
+                  Правильно! {getCompletionText(currentQuestion)}
                 </p>
               </div>
             </div>
