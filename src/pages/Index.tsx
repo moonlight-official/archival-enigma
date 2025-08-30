@@ -87,7 +87,7 @@ const Index = () => {
             {/* Completion Status */}
             {allCompleted && (
               <div className="text-center space-y-6 mt-16">
-                <MuseumCard className="max-w-2xl mx-auto p-8 opacity-75 bg-gradient-to-br from-gray-500/20 to-gray-600/20">
+                <MuseumCard className="max-w-2xl mx-auto p-8">
                   <MuseumCardContent className="text-center space-y-4">
                     <Trophy className="w-16 h-16 text-accent mx-auto animate-bloom" />
                     <h2 className="font-garamond text-3xl font-bold text-foreground">
