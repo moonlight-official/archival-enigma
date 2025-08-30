@@ -106,10 +106,10 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
     if (question.correctAnswers) {
       // Branching question - find the specific completion text for the selected answer
       const correctAnswer = question.correctAnswers.find(ca => ca.answerIndex === selectedAnswer);
-      return correctAnswer?.completionText || 'Переходите к следующему вопросу';
+      return correctAnswer?.completionText || 'Правильно! Переходите к следующему вопросу';
     } else {
       // Single answer question
-      return question.completionText || (questionIndex < quizData.questions.length - 1 ? 'Переходите к следующему вопросу' : 'Завершить этап');
+      return question.completionText || (questionIndex < quizData.questions.length - 1 ? 'Правильно! Переходите к следующему вопросу' : 'Завершить этап');
     }
   };
 
@@ -183,7 +183,7 @@ export const QuizSection: React.FC<QuizSectionProps> = ({
               <div className="flex flex-col md:flex-row md:items-center space-y-2 md:space-y-0 md:space-x-3">
                 <CheckCircle className="w-5 h-5 md:w-6 md:h-6 text-green-500 flex-shrink-0" />
                 <p className="font-sans text-green-700 font-medium text-sm md:text-base">
-                  Правильно! {getCompletionText(currentQuestion)}
+                  {getCompletionText(currentQuestion)}
                 </p>
               </div>
             </div>

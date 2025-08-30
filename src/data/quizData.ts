@@ -2,7 +2,7 @@ export const quizData = [
   {
     title: "Задание 1",
     subtitle: "Готовы ответить на вопросы?",
-    completionText: "Откройте конверт с заданием 2",
+    completionText: "Правильно! Откройте конверт с заданием 2",
     questions: [
       {
         id: 1,
@@ -60,7 +60,7 @@ export const quizData = [
   {
     title: "Задание 2",
     subtitle: "Готовы ответить на вопросы?",
-    completionText: "Откройте конверт с заданием 3",
+    completionText: "Правильно! Откройте конверт с заданием 3",
     questions: [
       {
         id: 1,
@@ -169,8 +169,8 @@ export const quizData = [
           "В картинной галерее"
         ],
         correctAnswers: [
-          { answerIndex: 3, completionText: "Откройте конверт с заданием 5" },
-          { answerIndex: 4, completionText: "Откройте конверт с заданием 4" }
+          { answerIndex: 3, completionText: "Правильно! Откройте конверт с заданием 5" },
+          { answerIndex: 4, completionText: "Правильно! Откройте конверт с заданием 4" }
         ],
         clues: [
           "Изучите схему внимательнее",
@@ -203,7 +203,7 @@ export const quizData = [
   {
     title: "Задание 5",
     subtitle: "Готовы ответить на вопросы?",
-    completionText: "Откройте конверт с заданием 6",
+    completionText: "Правильно! Откройте конверт с заданием 6",
     questions: [
       {
         id: 1,
